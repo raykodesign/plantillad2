@@ -1,0 +1,187 @@
+/* Importar fuente estética (común en estas bios) */
+@import url('https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: url('https://cur.cursors-4u.net/others/oth-6/oth697.cur'), auto !important; /* Cursor de cruz típico */
+}
+
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Courier Prime', monospace;
+    overflow: hidden;
+    height: 100vh;
+}
+
+/* --- CLICK TO ENTER --- */
+#enter-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease;
+    cursor: pointer;
+}
+
+.enter-text {
+    font-size: 20px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #fff;
+    animation: blink 1.5s infinite;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.hidden {
+    display: none;
+}
+
+#main {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 2s;
+}
+
+/* Video de fondo */
+#bg-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -1;
+    object-fit: cover;
+    filter: brightness(0.3); /* Oscurece el video */
+}
+
+/* Tarjeta */
+.profile-card {
+    background: rgba(10, 10, 10, 0.6);
+    backdrop-filter: blur(5px);
+    padding: 40px;
+    width: 350px;
+    border-radius: 15px;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+/* --- NUEVO EFECTO DE FOTO --- */
+
+/* Contenedor necesario para que el efecto de pulso se expanda bien */
+.pfp-container {
+    position: relative;
+    display: inline-block;
+    margin-bottom: 15px;
+    padding: 5px; /* Espacio para el pulso */
+}
+
+.pfp {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    
+    /* ESTADO NORMAL: */
+    /* Borde fino y sutil */
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* La clave: blanco y negro, un poco oscura y alto contraste para que se vea "ruda" */
+    filter: grayscale(100%) brightness(0.7) contrast(1.5) sepia(20%);
+    
+    transition: all 0.4s ease-in-out;
+    position: relative;
+    z-index: 2;
+}
+
+/* ESTADO HOVER (al pasar el mouse): */
+.pfp-container:hover .pfp {
+    /* Recupera un poco de color y brillo */
+    filter: grayscale(30%) brightness(1.1) contrast(1);
+    border-color: rgba(255, 255, 255, 0.8);
+    /* Activa la animación de latido */
+    animation: darkPulse 2s infinite;
+}
+
+/* Definición de la animación del "latido" u onda expansiva */
+@keyframes darkPulse {
+    0% {
+        /* Empieza pegado a la imagen con algo de opacidad */
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.3);
+    }
+    70% {
+        /* Se expande hacia afuera y se desvanece */
+        box-shadow: 0 0 0 15px rgba(255, 255, 255, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.username {
+    font-size: 24px;
+    text-shadow: 0 0 10px #fff;
+    margin-bottom: 5px;
+}
+
+.uid {
+    font-size: 12px;
+    color: #aaa;
+    margin-bottom: 20px;
+}
+
+.typing-container {
+    height: 20px;
+    margin-bottom: 25px;
+    font-size: 14px;
+    color: #ddd;
+    text-shadow: 0 0 5px #fff;
+}
+
+.socials {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.social-link {
+    color: #fff;
+    font-size: 22px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.social-link:hover {
+    color: #ccc;
+    text-shadow: 0 0 10px #fff;
+    transform: scale(1.1);
+}
+
+/* Animaciones */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.cursor {
+    animation: blink 1s infinite;
+}
